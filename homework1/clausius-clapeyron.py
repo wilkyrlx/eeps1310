@@ -19,6 +19,7 @@ def plot_range(start, end):
     plt.plot(temperatures, vapor_pressures)
     plt.xlabel("Temperature (C)")
     plt.ylabel("Vapor Pressure (kPa)")
+    plt.savefig('homework1/generated/clausius-clapeyron.png')
     plt.show()
 
 plot_range(0, 40)

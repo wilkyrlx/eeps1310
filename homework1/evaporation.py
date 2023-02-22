@@ -26,8 +26,10 @@ def read_evaporation_file():
 # Plots a basic evaporation map
 def basic_evaporation(month_int):
     ds1 = read_evaporation_file()
-    ds1.lhtfl.isel(time=month_int).plot()   
-    plt.title(f"Evaporation in {get_month(month_int)}")
+    ds1.lhtfl.isel(time=month_int).plot() 
+    month = get_month(month_int)  
+    plt.title(f"Evaporation in {month}")
+    plt.savefig(f'homework1/generated/basic-evap-{month}.png')
     plt.show()
 
 # Plots a prettier evaporation map with a cartographic overlay
@@ -42,7 +44,9 @@ def mapped_evaporation(month_int):
     ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=180))
     (ds1.lhtfl).isel(time=month_int).plot.contourf(ax=ax, transform=ccrs.PlateCarree(),levels=lev1, cmap=cmap1)
     ax.coastlines()
-    plt.title(f"{get_month(month_int)} surface latent heat flux (W/m2)")
+    month = get_month(month_int)  
+    plt.title(f"{month} surface latent heat flux (W/m2)")
+    plt.savefig(f'homework1/generated/mapped-evap-{month}.png')
     plt.show()
 
 # Generates plots for January and July. Note - mapped evaporation is a bit slow
