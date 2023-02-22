@@ -1,0 +1,14 @@
+# These are commands used to install in the conda environment
+# First, use these commands to make a new environment
+
+conda config --append channels conda-forge
+conda update -n base -c defaults -c conda-forge conda
+conda create -n eeps-env python=3.9
+conda activate eeps-env
+
+# next, install dependencies
+conda install -c conda-forge cartopy   
+conda install -c conda-forge xarray dask netCDF4 bottleneck
+conda install -c conda-forge matplotlib
+conda install -c conda-forge numpy pandas
+
