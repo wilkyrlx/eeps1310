@@ -31,7 +31,7 @@ def plot_avg_wind(month):
     ax1.coastlines()
 
     # and add wind vectors
-    q1=ax1.quiver(ds2.lon[::4], ds2.lat[::4], ds2.uwnd[0,0,::4,::4], ds3.vwnd[0,0,::4,::4]) # (lon,lat,u,v) 
+    q1=ax1.quiver(ds2.isel(time=month).lon[::4], ds2.isel(time=month).lat[::4], ds2.uwnd[month,0,::4,::4], ds3.vwnd[month,0,::4,::4]) # (lon,lat,u,v) 
     # arrows at every 4th points
 
     plt.quiverkey(q1, 0.70, 0.8, 10, '10 m/s', labelpos='E', coordinates='figure') # (Q,X,Y,U,label)
