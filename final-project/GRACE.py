@@ -6,12 +6,16 @@ import cartopy.feature as cfeature
 
 # !!! CONTROL VARIABLES !!!
 # bounding box for map [min_longitude, max_longitude, min_latitude, max_latitude]
+selector = 0                # 0 for New York and Pennsylvania, 1 for Maine and New Hampshire
 # extent = [-125, -65, 24, 50]  # United States
-extent = [-82, -72, 38, 45]     # New York and Pennsylvania, zoomed out
-# !!! CONTROL VARIABLES !!!
+extent1 = [-82, -72, 38, 45]     # New York and Pennsylvania, zoomed out
+extent2 = [-75.3, -66.8, 42.8, 47.2]     # Maine and New Hampshire, zoomed out
+extent = [extent1, extent2][selector]
+title_lables = ['NY/PA', 'ME/NH']
 
 grace_path1 = 'final-project\\data-penn\\GRACEDADM_CLSM025GL_7D.A20220606.030.nc4'
 grace_path2 = 'final-project\\data-penn\\GRACEDADM_CLSM025GL_7D.A20030602.030.nc4'
+# !!! CONTROL VARIABLES !!!
 
 
 grace_path = [grace_path1, grace_path2]
@@ -27,6 +31,6 @@ ax.set_extent(extent)
 ax.coastlines()
 ax.add_feature(cfeature.STATES, edgecolor='black', linewidth=0.5)
 grace_diff.plot(ax=ax, transform=ccrs.PlateCarree(), cmap='RdBu', cbar_kwargs={'label': 'Groundwater Storage Percentile', 'shrink': 0.6})
-# plt.title('GRACE Groundwater Storage Change from 2022 to 2003, July')
+plt.title(f'GRACE Groundwater Storage Change {title_lables[selector]} 2003-2022, July')
 plt.show()
 
