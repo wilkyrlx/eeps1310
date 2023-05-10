@@ -2,12 +2,30 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-filepath1 = 'final-project\\data-depth\\me-916.csv'
-filepath2 = 'final-project\\data-depth\\me-1135.csv'
-filepath3 = 'final-project\\data-depth\\me-807.csv'
+selector = 0               # 0 for New York and Pennsylvania, 1 for Maine and New Hampshire
+filepath1 = ""      # aq1
+filepathE = ""      #aq2
+filepath2 = ""      #plant1
+filepath3 = ""      #plant2
+state = ""
 
-filepaths = [filepath1, filepath2, filepath3]
-labels = ['Aq1', 'P1', 'P2']
+if selector == 0:
+    # files for Pennsylvania
+    filepath1 = 'final-project\\data-depth\\penn-700.csv'
+    filepathE = 'final-project\\data-depth\\penn-146.csv'
+    filepath2 = 'final-project\\data-depth\\penn-820.csv'
+    filepath3 = 'final-project\\data-depth\\penn-929.csv'
+    state = "Pennsylvania"
+else:
+    # files for Maine
+    filepath1 = 'final-project\\data-depth\\me-916.csv'
+    filepathE = 'final-project\\data-depth\\me-887.csv'
+    filepath2 = 'final-project\\data-depth\\me-1135.csv'
+    filepath3 = 'final-project\\data-depth\\me-807.csv'
+    state = "Maine"
+
+filepaths = [filepath1, filepathE, filepath2, filepath3]
+labels = ['Aquifer only 1', 'Aquifer only 2', 'Plant 1', 'Plant 2']
 
 fig, ax = plt.subplots()
 for i, filepath in enumerate(filepaths):
@@ -22,10 +40,11 @@ for i, filepath in enumerate(filepaths):
 
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
+ax.invert_yaxis()   # invert, since this measures depth to groundwater
 
 # Put a legend to the right of the current axis
 ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-plt.title('Average Depth to Groundwater in Maine')
+plt.title(f'Average Depth to Groundwater in {state}')
 plt.xlabel('Year')
 plt.ylabel('Depth to Groundwater (ft)')
 plt.show()
