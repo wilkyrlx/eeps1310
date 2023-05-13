@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-selector = 0               # 0 for New York and Pennsylvania, 1 for Maine and New Hampshire
+selector = 1               # 0 for New York and Pennsylvania, 1 for Maine and New Hampshire
 filepath1 = ""      # aq1
 filepathE = ""      #aq2
 filepath2 = ""      #plant1
@@ -36,6 +36,7 @@ for i, filepath in enumerate(filepaths):
 
     slope, intercept = np.polyfit(df_month6['year_nu'], df_month6['mean_va'], 1)
     ax.plot(df_month6['year_nu'], slope*df_month6['year_nu'] + intercept, '--')
+    print(f"The {i+1} slope is {slope}")
 
 
 box = ax.get_position()
